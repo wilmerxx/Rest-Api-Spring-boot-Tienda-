@@ -30,7 +30,6 @@ public class wmscOrdenControlador {
     wmscAlmacenServicio wmscAlmacenService;
     @Autowired
     wmscClienteServicio wmscClienteService;
-
     @PostMapping("/wmscAgregarOrden")
     public ResponseEntity<?> wmscAgregarOrden(
             @RequestParam(value = "wmscOrderID") int wmscOrderID,
@@ -65,49 +64,16 @@ public class wmscOrdenControlador {
                         );
                         wmscOrdenService.wmscAgregar(wmscOrde);
                         return ResponseEntity.ok("Agregado con exito la orden");
-                    }else {
-                        return ResponseEntity.ok("Cliente no existe");
+                    }else { return ResponseEntity.ok("Cliente no existe");
                     }
-
-                }else{
-                    return ResponseEntity.ok("Almacen no existe");
+                }else{ return ResponseEntity.ok("Almacen no existe");
                 }
-
-
-            }else {
-                wmscOrdenParaActualizar.getWmscProductosList().add(wmscProduct);
+            }else { wmscOrdenParaActualizar.getWmscProductosList().add(wmscProduct);
                 return ResponseEntity.ok("Producto nuevo agregado");
             }
-
-        }else{
-            return ResponseEntity.ok("No existe producto");
-        }
-
-
-    }
-
-    @PostMapping("/wmscAgregarProductoOrden")
-    public ResponseEntity<?> wmscAgregarProductoOreden(
-            @RequestParam(value = "wmscOrdenID") int wmscOrdenID,
-            @RequestParam(value = "wmscProductoID") int wmscProductoID
-    ){
-        wmscOrden wmscOrde =  wmscOrdenService.wmscBuscarPorID(wmscOrdenID);
-        wmscProducto wmscProduct = wmscProductoService.wmscBuscarPorID(wmscProductoID);
-        if(!Objects.isNull(wmscOrde)){
-            if(!Objects.isNull(wmscProduct)){
-               // wmscOrdenService.wmscAgregarProductosOrden(wmscOrde,wmscProduct);
-
-                return ResponseEntity.ok("Productos agregado");
-            }else {
-                return ResponseEntity.ok("Producto no existe");
-            }
-
-        }else {
-            return ResponseEntity.ok("Orden no existe");
+        }else{ return ResponseEntity.ok("No existe producto");
         }
     }
-
-
     @GetMapping("/wmscListaOrdenes")
     public ResponseEntity<?> wmscListaOrdenes(){
 

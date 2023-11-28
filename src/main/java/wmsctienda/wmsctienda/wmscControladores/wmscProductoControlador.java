@@ -13,10 +13,8 @@ import java.util.Objects;
 
 @RestController
 public class wmscProductoControlador{
-
     @Autowired
     wmscProductoServicio wmscProductoServi;
-
     @GetMapping("/wmscListaProductos")
     public ResponseEntity<?> wmscListaProductos() {
         try {
@@ -31,7 +29,6 @@ public class wmscProductoControlador{
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al procesar la solicitud");
         }
     }
-
     @PostMapping("/wmscAgregarProducto")
     public ResponseEntity<?> wmscAgregar(
             @RequestParam(value = "wmscProductoID") int wmscProductoID,
@@ -52,8 +49,6 @@ public class wmscProductoControlador{
             }
 
     }
-
-
     @GetMapping("/wmscBuscarProducto/{wmscid}")
     public ResponseEntity<?> wmscBuscarPorID(@PathVariable(value = "wmscid") int wmscID) {
        wmscProducto wmscProduct = wmscProductoServi.wmscBuscarPorID(wmscID);
@@ -64,8 +59,6 @@ public class wmscProductoControlador{
        }
 
     }
-
-
     @DeleteMapping("/wmscEliminarProducto/{wmscid}")
     public ResponseEntity<?> wmscEliminarPorID(@PathVariable(value = "wmscid") int wmscID) {
         wmscProducto wmscProduct = wmscProductoServi.wmscBuscarPorID(wmscID);
@@ -76,8 +69,6 @@ public class wmscProductoControlador{
             return ResponseEntity.ok("No existe ese producto");
         }
     }
-
-
     @PutMapping("/wmscActualizarProducto/{wmscid}")
     public ResponseEntity<?> wmscActualizarPorId(
             @PathVariable(value = "wmscid") int wmscid,
@@ -85,7 +76,6 @@ public class wmscProductoControlador{
             @RequestParam(value = "wmscNombre") String wmscNombre,
             @RequestParam(value = "wmscPrecio") double wmscPrecio
             ) {
-
         if(!Objects.isNull(wmscProductoServi.wmscBuscarPorID(wmscid))){
             wmscProducto wmscProduct = new wmscProducto(wmscDepartamentoID,wmscDepartamentoID,wmscNombre,wmscPrecio);
             wmscProductoServi.wmscActualizarPorId(wmscProduct);

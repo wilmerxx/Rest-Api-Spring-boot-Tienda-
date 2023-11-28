@@ -1,5 +1,4 @@
 package wmsctienda.wmsctienda.wmscRepositorios;
-
 public interface wmscInterfazRepositorio {
     public void wmscAgregar(Object wmscObj);
     //public Object wmscBuscarPorID(int wmscID);

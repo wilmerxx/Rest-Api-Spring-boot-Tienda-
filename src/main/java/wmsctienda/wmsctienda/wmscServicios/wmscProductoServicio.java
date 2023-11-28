@@ -14,18 +14,14 @@ public class wmscProductoServicio implements wmscInterfazServicio {
     public List<wmscProducto> wmscProductoList(){
         return wmscProductoRepo.wmscListaProductos();
     }
-
     @Override
     public void wmscAgregar(Object wmscObj) {
         this.wmscProductoRepo.wmscAgregar(wmscObj);
 
     }
-
-    //@Override
     public wmscProducto wmscBuscarPorID(int wmscID) {
         return wmscProductoRepo.wmscBuscarPorID(wmscID);
     }
-
     @Override
     public void wmscEliminarPorID(int wmscID) {
         wmscProductoRepo.wmscEliminarPorID(wmscID);

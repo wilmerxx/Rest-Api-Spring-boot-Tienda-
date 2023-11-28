@@ -10,39 +10,26 @@ import java.util.Objects;
 @Repository
 public class wmscProductoRepositorio implements wmscInterfazRepositorio {
     private List<wmscProducto> wmscListaProducto = new ArrayList<>();
-
-
     public List<wmscProducto> wmscListaProductos(){
         return this.wmscListaProducto;
     }
-
     @Override
     public void wmscAgregar(Object wmscObj) {
         wmscProducto wmscProduct = (wmscProducto) wmscObj;
-        if(!Objects.isNull(wmscProduct)){
-            this.wmscListaProducto.add(wmscProduct);
-        }
-
+        if(!Objects.isNull(wmscProduct)){this.wmscListaProducto.add(wmscProduct);}
     }
-
     public wmscProducto wmscBuscarPorID(int wmscID) {
         wmscProducto wmscProductBuscado = null;
         for (wmscProducto wmscProduc:wmscListaProducto) {
-            if(wmscProduc.getWmscProductoID() == wmscID){
-                wmscProductBuscado = wmscProduc;
-            }
+            if(wmscProduc.getWmscProductoID() == wmscID){wmscProductBuscado = wmscProduc;}
         }
         return wmscProductBuscado;
     }
     @Override
     public void wmscEliminarPorID(int wmscID) {
         wmscProducto wmscProduct = wmscBuscarPorID(wmscID);
-        if(wmscProduct.getWmscProductoID() == wmscID){
-            wmscListaProducto.remove(wmscProduct);
-        }
-
+        if(wmscProduct.getWmscProductoID() == wmscID){wmscListaProducto.remove(wmscProduct);}
     }
-
     @Override
     public void wmscActualizarPorId(Object wmscObj) {
         wmscProducto wmscProduct = (wmscProducto) wmscObj;
@@ -53,8 +40,6 @@ public class wmscProductoRepositorio implements wmscInterfazRepositorio {
             wmscProductoBuscado.setWmscNombre(wmscProduct.getWmscNombre());
             wmscProductoBuscado.setWmscDepartamentoID(wmscProduct.getWmscDepartamentoID());
         }
-
-
     }
 
 }

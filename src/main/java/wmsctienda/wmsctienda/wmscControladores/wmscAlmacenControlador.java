@@ -24,7 +24,6 @@ public class wmscAlmacenControlador {
             return ResponseEntity.ok(Collections.emptyList());
         }
     }
-
     @GetMapping("/wmscAlmanePorID/{wmscid}")
     public ResponseEntity<?> wmscBuscarPorID(@PathVariable(value = "wmscid") int wmscid){
         wmscAlmacen wmscAlmace = wmscAlmacenService.wmscBuscarAlmacen(wmscid);
@@ -34,13 +33,12 @@ public class wmscAlmacenControlador {
             return ResponseEntity.ok("No existe el almacen");
         }
     }
-
     @PostMapping("/wmscAgregarAlmacen")
     public ResponseEntity<?> wmscAgregar(
             @RequestParam(value = "wmscAlmacenID") int  wmscAlmacenID,
             @RequestParam(value = "wmscNombreAlmacen") String  wmscNombreAlmacen
     ){
-        if(Objects.isNull(wmscAlmacenService.wmscBuscarAlmacen(wmscAlmacenID))){
+        if( Objects.isNull(wmscAlmacenService.wmscBuscarAlmacen(wmscAlmacenID))){
             wmscAlmacen wmscAlmace = new wmscAlmacen(wmscAlmacenID,wmscNombreAlmacen);
             wmscAlmacenService.wmscAgregar(wmscAlmace);
             return ResponseEntity.ok(wmscAlmace);
@@ -48,7 +46,6 @@ public class wmscAlmacenControlador {
             return ResponseEntity.ok("Ya existe este cliente");
         }
     }
-
     @DeleteMapping("/wmscEliminarPorID/{wmscid}")
     public ResponseEntity<?> wmscEliminarPorID(@PathVariable(value = "wmscid") int wmscid){
         if(!Objects.isNull(wmscAlmacenService.wmscBuscarAlmacen(wmscid))){
@@ -58,7 +55,6 @@ public class wmscAlmacenControlador {
             return ResponseEntity.ok("No existe almacen");
         }
     }
-
     @PutMapping("/wmscActualizarAlmacen/{wmscid}")
     public ResponseEntity<?> wmscActualizarPorId(
             @PathVariable(value = "wmscid") int wmscAlmacenID,
